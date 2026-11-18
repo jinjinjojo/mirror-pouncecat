@@ -1,0 +1,218 @@
+/* The cinematic style (look.style: "cinematic"), loaded after the theme. Same tokens, same markup; the page gets
+   film-poster scale and depth: the sections float over the background effect (VOID's nebula), titles are set huge and
+   rise out of their lines word by word, the marquee answers the scroll (modules/motion.js), big buttons lean toward
+   the pointer, the stage hero's name grows and fades as you leave it, and the closing scene fills the screen.
+   Every rule is scoped to [data-style="cinematic"] so it outranks the theme's own layout rules; colours stay the
+   theme's. Reduced motion keeps the layout and drops the movement. */
+
+[data-style="cinematic"] {
+  --cine-title: clamp(2.7rem, 1.2rem + 5.4vw, 7.6rem);
+  --cine-gap: clamp(92px, 12vh, 180px);
+  --cine-ease: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* ---------- rhythm: sections breathe, the background shows through ---------- */
+[data-style="cinematic"] .sec {
+  padding-block: var(--cine-gap);
+}
+[data-style="cinematic"] .sec.stats {
+  padding-block: clamp(40px, 6vh, 72px);
+}
+
+/* ---------- titles: poster scale, rising out of their lines ---------- */
+[data-style="cinematic"] .sec__head {
+  max-width: none;
+  gap: clamp(14px, 1.6vw, 22px);
+}
+[data-style="cinematic"] .sec__title {
+  font-size: calc(var(--cine-title) * var(--display-scale, 1));
+  line-height: 0.9;
+  text-wrap: balance;
+}
+[data-style="cinematic"] .lore__copy .sec__title,
+[data-style="cinematic"] .faq__layout .sec__title {
+  font-size: calc(clamp(2.4rem, 1.2rem + 3.6vw, 5.4rem) * var(--display-scale, 1));
+}
+[data-style="cinematic"] .sec__num {
+  color: var(--accent);
+}
+[data-style="cinematic"] .split-w > span {
+  transition: transform 1.25s var(--cine-ease), opacity 1.25s var(--cine-ease);
+  transition-delay: calc(var(--wi, 0) * 85ms + 60ms);
+}
+[data-style="cinematic"].reveal-on .is-split:not(.is-in-now) .split-w > span {
+  transform: translate3d(0, 112%, 0) rotate(4deg);
+  opacity: 0.2;
+}
+
+/* ---------- reveals: blocks rise out of a soft blur ---------- */
+[data-style="cinematic"].reveal-on [data-reveal]:not(.is-in) {
+  opacity: 0;
+  transform: translate3d(0, 64px, 0) scale(0.985);
+  filter: blur(10px);
+}
+[data-style="cinematic"].reveal-on [data-reveal].is-in {
+  transition:
+    opacity 1.2s var(--cine-ease),
+    transform 1.4s var(--cine-ease),
+    filter 1.2s var(--cine-ease);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+
+/* ---------- the stage hero: leaving the first screen, the name grows and fades ---------- */
+[data-style="cinematic"] .hero--stage .hero__title {
+  transform: translate3d(0, calc(var(--sp, 0) * -9vh), 0) scale(calc(1 + var(--sp, 0) * 0.1));
+  opacity: calc(1 - var(--sp, 0) * 0.85);
+  transform-origin: 50% 70%;
+}
+[data-style="cinematic"] .hero--stage .hero__tagline {
+  font-size: clamp(1.25rem, 0.95rem + 1.1vw, 2rem);
+  font-weight: 600;
+  color: var(--fg);
+}
+[data-style="cinematic"] .hero--stage .hero__text {
+  color: var(--fg-2);
+  font-size: clamp(1rem, 0.94rem + 0.3vw, 1.15rem);
+}
+
+/* ---------- marquee: a band of big type that speeds up and leans as you scroll ---------- */
+[data-style="cinematic"] .marquee {
+  padding-block: clamp(16px, 2.4vw, 30px);
+  transform: skewY(calc(var(--mq-skew, 0) * -1deg));
+  transition: transform 0.4s var(--cine-ease);
+}
+[data-style="cinematic"] .marquee__item {
+  font-size: calc(clamp(1.7rem, 0.9rem + 3.2vw, 4.2rem) * var(--display-scale, 1));
+}
+[data-style="cinematic"] .marquee__sep img {
+  width: clamp(26px, 2.6vw, 44px);
+  height: clamp(26px, 2.6vw, 44px);
+}
+
+/* ---------- live stats: a board of big figures (and a big promise before launch) ---------- */
+[data-style="cinematic"] .stat__value {
+  font: var(--display-weight) calc(clamp(1.7rem, 0.9rem + 2.4vw, 3.4rem) * var(--display-scale, 1)) / 1 var(--font-display);
+  letter-spacing: var(--display-tracking);
+}
+[data-style="cinematic"] .ticker__when {
+  color: var(--fg);
+  font: var(--display-weight) calc(clamp(1.3rem, 0.9rem + 1.5vw, 2.5rem) * var(--display-scale, 1)) / 1.05 var(--font-display);
+  letter-spacing: var(--display-tracking);
+  text-transform: var(--display-case);
+}
+
+/* ---------- lore: the first paragraph is the lead ---------- */
+[data-style="cinematic"] .lore--text .lore__text p:first-child {
+  color: var(--fg);
+  font-size: clamp(1.3rem, 0.95rem + 1.25vw, 2.15rem);
+  line-height: 1.32;
+}
+[data-style="cinematic"] .lore--text .lore__text p + p {
+  margin-top: 1.1em;
+}
+
+/* ---------- portal: the way into the 3D world, set big ---------- */
+[data-style="cinematic"] .portal .sec__title {
+  font-size: calc(clamp(2.6rem, 1.2rem + 4.8vw, 6.6rem) * var(--display-scale, 1));
+}
+[data-style="cinematic"] .portal__ring {
+  width: min(100%, 540px);
+}
+
+/* ---------- buttons: pill-weight, a fill that sweeps in, a lean toward the pointer ---------- */
+[data-style="cinematic"] .btn--lg {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  translate: var(--mx, 0px) var(--my, 0px);
+  transition:
+    translate 0.4s var(--cine-ease),
+    background 0.3s,
+    color 0.3s,
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+[data-style="cinematic"] .btn--lg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: currentColor;
+  opacity: 0.1;
+  translate: -101% 0;
+  transition: translate 0.55s var(--cine-ease);
+}
+[data-style="cinematic"] .btn--lg:hover::after {
+  translate: 0 0;
+}
+
+/* ---------- how to buy: the numerals outlined, filling in as the line reaches them ---------- */
+[data-style="cinematic"] .steps--cards .step__n {
+  font-size: calc(clamp(3.4rem, 2rem + 4.4vw, 7.6rem) * var(--display-scale, 1));
+  color: color-mix(in srgb, var(--accent) calc(var(--on, 1) * 100%), transparent);
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--accent) 70%, var(--fg));
+}
+
+/* ---------- tokenomics: the supply figure fills the width ---------- */
+[data-style="cinematic"] .fact--lead dd {
+  font-size: calc(clamp(2.6rem, 0.8rem + 7vw, 9rem) * var(--display-scale, 1));
+}
+
+/* ---------- community: the channel names answer the pointer ---------- */
+[data-style="cinematic"] .community__name {
+  transition: color 0.35s, letter-spacing 0.6s var(--cine-ease);
+}
+[data-style="cinematic"] .community__link:hover .community__name {
+  color: var(--accent);
+  letter-spacing: 0.01em;
+}
+
+/* ---------- closing scene: the last screen is one big line ---------- */
+[data-style="cinematic"] .cta {
+  display: grid;
+  align-items: center;
+  min-height: min(92svh, 980px);
+}
+[data-style="cinematic"] .cta__title {
+  font-size: calc(clamp(3.2rem, 1.2rem + 8.4vw, 10.5rem) * var(--display-scale, 1));
+  line-height: 0.86;
+}
+
+/* ---------- phones: the same scene, closer ---------- */
+@media (max-width: 640px) {
+  [data-style="cinematic"] {
+    --cine-gap: clamp(72px, 10vh, 110px);
+  }
+  [data-style="cinematic"] .hero--stage .hero__title {
+    font-size: calc(clamp(3.6rem, 21vw, 7rem) * var(--display-scale, 1));
+  }
+  [data-style="cinematic"] .hero--stage .mascot {
+    width: min(62vw, 280px);
+    margin-top: -2.4rem;
+  }
+  /* One long word (TOKENOMICS, COMMUNITY) must fit the screen in the wide display faces. */
+  [data-style="cinematic"] .sec__title {
+    font-size: min(calc(var(--cine-title) * var(--display-scale, 1)), 8.4vw);
+  }
+  [data-style="cinematic"] .fact--lead dd {
+    font-size: min(calc(clamp(2.6rem, 0.8rem + 7vw, 9rem) * var(--display-scale, 1)), 7.4vw);
+  }
+  [data-style="cinematic"] .steps--cards .step__n {
+    font-size: calc(2.4rem * var(--display-scale, 1));
+    -webkit-text-stroke-width: 1px;
+  }
+}
+
+/* ---------- reduced motion: the layout stays, the movement goes ---------- */
+@media (prefers-reduced-motion: reduce) {
+  [data-style="cinematic"] .marquee,
+  [data-style="cinematic"] .hero--stage .hero__title {
+    transform: none;
+    opacity: 1;
+  }
+}
+[data-style="cinematic"].motion-reduced .marquee,
+[data-style="cinematic"].motion-reduced .hero--stage .hero__title {
+  transform: none;
+  opacity: 1;
+}

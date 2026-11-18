@@ -1,0 +1,73 @@
+/* Laser: a dark living room at night, a red laser dot and a ginger cat. Warm near-black, cream type, laser red for the
+   dot and the marks, ginger for the buttons. Made for Pounce; its background effect is the laser dot itself. */
+[data-theme="laser"] {
+  --bg: #0e0908;
+  --bg-2: #171010;
+  --surface: rgba(255, 214, 196, 0.05);
+  --surface-2: rgba(255, 214, 196, 0.1);
+  --line: rgba(255, 210, 190, 0.13);
+  --line-2: rgba(255, 210, 190, 0.28);
+  --fg: #fff3ea;
+  --fg-2: #dcc3b5;
+  --fg-3: #a08577;
+  --accent: #ff3b5c;
+  --accent-2: #ff9f43;
+  --accent-fg: #1a0508;
+  --up: #7ee081;
+  --down: #ff5e57;
+  --glow: rgba(255, 59, 92, 0.45);
+  --font-display: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --font-body: "Instrument Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --display-weight: 800;
+  --display-tracking: -0.035em;
+  --display-leading: 0.9;
+  --display-case: none;
+  --char-w: 0.62;
+  --radius: 18px;
+  --btn-bg: linear-gradient(180deg, #ffb46a, #ff9f43 60%, #f38a2c);
+  --btn-fg: #1a0a04;
+  --btn-glow: 0 0 0 1px rgba(255, 159, 67, 0.4), 0 12px 40px -12px rgba(255, 120, 40, 0.55);
+  --card-bg: linear-gradient(180deg, rgba(34, 21, 18, 0.74), rgba(22, 14, 12, 0.74));
+  --marquee-bg: #ff3b5c;
+  --marquee-fg: #1a0508;
+  --nav-bg: rgba(14, 9, 8, 0.8);
+  --grain: 0.06;
+}
+[data-theme="laser"] body {
+  background:
+    radial-gradient(1100px 650px at 50% -12%, rgba(255, 59, 92, 0.08), transparent 60%),
+    radial-gradient(900px 600px at 100% 100%, rgba(255, 159, 67, 0.06), transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
+}
+[data-theme="laser"] .hero__title {
+  color: var(--fg);
+}
+[data-theme="laser"] .step__n {
+  --step-on: var(--accent);
+}
+[data-theme="laser"] [data-tone="invert"] {
+  --bg: #fff3ea;
+  --fg: #1a0a08;
+  --fg-2: #5e463c;
+  --fg-3: #75594d;
+  --accent: #c8102e;
+  --accent-fg: #fff3ea;
+  --glow: rgba(200, 16, 46, 0.25);
+  --line: rgba(26, 10, 8, 0.14);
+  --surface: rgba(26, 10, 8, 0.04);
+  --surface-2: rgba(26, 10, 8, 0.08);
+  --card-bg: #ffffff;
+}
+[data-theme="laser"] [data-tone="accent"] {
+  --bg: #ff3b5c;
+  --fg: #1a0508;
+  --fg-2: #3d0a14;
+  --fg-3: #3a0912;
+  --accent: #1a0508;
+  --accent-fg: #ff3b5c;
+  --btn-bg: #1a0508;
+  --btn-fg: #ff3b5c;
+  --card-bg: rgba(255, 255, 255, 0.25);
+}
